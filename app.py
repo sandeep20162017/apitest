@@ -4,20 +4,25 @@ import os
 
 app = Flask(__name__)
 
+print('reading env vars')
 # Read environment variables
 GITHUB_TOKEN = os.getenv('GITHUB_TOKEN')
 REPO_OWNER = os.getenv('REPO_OWNER')
 REPO_NAME = os.getenv('REPO_NAME')
 FILE_PATH = os.getenv('FILE_PATH')
 
+print('calling app.route')
 @app.route('/get-file', methods=['GET'])
 def get_file():
+    print('get file')
     url = f'https://api.github.com/repos/{REPO_OWNER}/{REPO_NAME}/contents/{FILE_PATH}'
     headers = {
         'Authorization': f'token {GITHUB_TOKEN}',
         'Accept': 'application/vnd.github.v3.raw'
     }
+    print('getting response')
     response = requests.get(url, headers=headers)
+    print('response')
     
     if response.status_code == 200:
         file_content = response.text

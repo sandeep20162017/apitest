@@ -3,7 +3,6 @@ import requests
 import os
 
 app = Flask(__name__)
-
 print('reading env vars')
 # Read environment variables
 GITHUB_TOKEN = os.getenv('GITHUB_TOKEN')

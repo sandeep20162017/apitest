@@ -2,7 +2,6 @@ from flask import Flask, jsonify
 import requests
 import os
 
-
 app = Flask(__name__)
 
 # Read environment variables
@@ -24,7 +23,7 @@ def get_file():
         file_content = response.text
         return jsonify({'file_content': file_content})
     else:
-        return jsonify({'error': 'Failed to fetch file from GitHub'}), response.status_code
+        return jsonify({'error': 'Failed to fetch file from GitHub', 'status_code': response.status_code}), response.status_code
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=8080)

@@ -6,11 +6,14 @@
       "use": "@vercel/python"
     }
   ],
-
   "routes": [
     {
-      "src": "/get-file",
+      "src": "/(.*)",
       "dest": "app.py"
     }
-  ]
+  ],
+  "projectSettings": {
+    "buildCommand": "pip install -r requirements.txt && gunicorn app:app",
+    "outputDirectory": "./"
+  }
 }
